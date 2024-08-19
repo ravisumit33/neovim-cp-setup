@@ -7,6 +7,7 @@ return {
 				compile_command = {
 					cpp = { exec = "g++", args = { "-Wall", "-g", "-std=c++20", "$(FNAME)", "-o", "$(FNOEXT)" } },
 				},
+				template_file = "template.$(FEXT)",
 			})
 		end,
 	},
