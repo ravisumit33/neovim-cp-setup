@@ -1,3 +1,53 @@
+local dap = require("dap")
+
+-- Define a custom function to compile and debug cpp file
+local function compile_and_debug()
+	local filedir = vim.fn.expand("%:p:h")
+	local filename = vim.fn.expand("%:t:r")
+	local filepath = vim.fn.expand("%:p")
+	local outname = filedir .. "/" .. filename
+
+	-- Compile the current C++ file with debug symbols
+	local compile_cmd = 'g++ -Wall -g -std=c++20 "' .. filepath .. '" -o "' .. outname .. '"'
+
+	print("Compiling: " .. outname)
+
+	-- Execute the compilation command
+	local result = vim.fn.system(compile_cmd)
+
+	if vim.v.shell_error ~= 0 then
+		print("Compilation failed:\n" .. result)
+		return
+	end
+
+	-- Define the debug configuration
+	local debug_config = {
+		name = "Debug " .. filename,
+		type = "codelldb",
+		request = "launch",
+		program = outname,
+		cwd = filedir,
+		stopOnEntry = false,
+		setupCommands = {
+			{
+				text = "-enable-pretty-printing",
+				description = "Enable pretty printing",
+				ignoreFailures = false,
+			},
+		},
+	}
+
+	-- Run the debug configuration
+	dap.run(debug_config)
+end
+
+-- Create a command that runs the function
+vim.api.nvim_create_user_command("BuildAndDebug", compile_and_debug, {})
+-- Define the key mapping for BuildAndDebug
+vim.api.nvim_set_keymap("n", "<leader>cpd", ":BuildAndDebug<CR>", { noremap = true, silent = true })
+-- Define the key mapping for receiving contest
+vim.api.nvim_set_keymap("n", "<leader>cpr", ":CompetiTest receive contest<CR>", { noremap = true, silent = true })
+
 return {
 	{
 		"xeluxee/competitest.nvim",
@@ -39,7 +89,6 @@ return {
 	{
 		"rcarriga/nvim-dap-ui",
 		config = function(_, opts)
-			local dap = require("dap")
 			local dapui = require("dapui")
 			dapui.setup(opts)
 			dap.listeners.after.event_initialized["dapui_config"] = function()
