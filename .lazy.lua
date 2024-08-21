@@ -60,6 +60,7 @@ return {
 					cpp = { exec = "g++", args = { "-Wall", "-g", "-std=c++20", "$(FNAME)", "-o", "$(FNOEXT)" } },
 				},
 				template_file = "template.$(FEXT)",
+				evaluate_template_modifiers = true,
 			})
 		end,
 	},
