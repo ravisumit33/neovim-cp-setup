@@ -27,9 +27,16 @@ template <typename T> void inV(vector<T> &v) {
     cin >> el;
 }
 
+void yesno(bool yes) { cout << (yes ? "YES" : "NO") << '\n'; }
+
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
+
+  int t;
+  cin >> t;
+  while (t--) {
+  }
 
   return 0;
 }

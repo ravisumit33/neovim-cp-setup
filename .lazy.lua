@@ -45,6 +45,8 @@ end
 vim.api.nvim_create_user_command("BuildAndDebug", compile_and_debug, {})
 -- Define the key mapping for BuildAndDebug
 vim.api.nvim_set_keymap("n", "<leader>cpd", ":BuildAndDebug<CR>", { noremap = true, silent = true })
+-- Define the key mapping for running sample test cases
+vim.api.nvim_set_keymap("n", "<leader>cpt", ":CompetiTest run<CR>", { noremap = true, silent = true })
 -- Define the key mapping for receiving contest
 vim.api.nvim_set_keymap("n", "<leader>cpr", ":CompetiTest receive contest<CR>", { noremap = true, silent = true })
 
