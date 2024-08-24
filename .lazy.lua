@@ -8,7 +8,7 @@ local function compile_and_debug()
 	local outname = filedir .. "/" .. filename
 
 	-- Compile the current C++ file with debug symbols
-	local compile_cmd = 'g++ -Wall -g -std=c++20 "' .. filepath .. '" -o "' .. outname .. '"'
+	local compile_cmd = 'g++ -Wall -Wextra -g -std=c++20 "' .. filepath .. '" -o "' .. outname .. '"'
 
 	print("Compiling: " .. outname)
 
@@ -57,10 +57,20 @@ return {
 		config = function()
 			require("competitest").setup({
 				compile_command = {
-					cpp = { exec = "g++", args = { "-Wall", "-g", "-std=c++20", "$(FNAME)", "-o", "$(FNOEXT)" } },
+					cpp = {
+						exec = "g++",
+						args = { "-Wall", "-Wextra", "-g", "-std=c++20", "$(FNAME)", "-o", "$(FNOEXT)" },
+					},
 				},
 				template_file = "template.$(FEXT)",
 				evaluate_template_modifiers = true,
+				received_contests_directory = "$(CWD)/$(JUDGE)",
+				received_contests_prompt_directory = false,
+				received_contests_prompt_extension = false,
+				open_received_contests = false,
+				received_problems_path = "$(CWD)/$(JUDGE)/$(PROBLEM).$(FEXT)",
+				received_problems_prompt_path = false,
+				view_output_diff = true,
 			})
 		end,
 	},
