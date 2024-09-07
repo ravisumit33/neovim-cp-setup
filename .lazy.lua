@@ -49,6 +49,13 @@ vim.api.nvim_set_keymap("n", "<leader>cpd", ":BuildAndDebug<CR>", { noremap = tr
 vim.api.nvim_set_keymap("n", "<leader>cpt", ":CompetiTest run<CR>", { noremap = true, silent = true })
 -- Define the key mapping for receiving contest
 vim.api.nvim_set_keymap("n", "<leader>cpr", ":CompetiTest receive contest<CR>", { noremap = true, silent = true })
+-- Define the key mapping for finding cpp files
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>cpf",
+	":Telescope find_files find_command=rg,--ignore,--hidden,--files,-g,*.cpp<CR>",
+	{ noremap = true, silent = true }
+)
 
 return {
 	{
