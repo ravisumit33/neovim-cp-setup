@@ -1,9 +1,3 @@
-//
-//  modular-arithmetic.cpp
-//  codeforces
-//
-//  Created by Sumit Kumar on 08/06/24.
-//
 #include <cassert>
 #include <cstdint>
 #include <functional>
@@ -127,5 +121,27 @@ private:
   static constexpr int MOD = 998244353;
   static constexpr bool MOD_IS_PRIME = true;
 };
+
+const int MAXN = 2e5;
+mint factorial[MAXN + 1];
+mint inv_factorial[MAXN + 1];
+
+void precompute() {
+  factorial[0] = 1;
+  for (int i = 1; i <= MAXN; i++) {
+    factorial[i] = factorial[i - 1] * i;
+  }
+
+  inv_factorial[MAXN] = 1 / factorial[MAXN];
+  for (int i = MAXN - 1; i >= 0; --i) {
+    inv_factorial[i] = inv_factorial[i + 1] * (i + 1);
+  }
+}
+
+mint ncrp(int n, int r) {
+  if (r > n || r < 0)
+    return 0;
+  return factorial[n] * inv_factorial[r] * inv_factorial[n - r];
+}
 
 } // namespace modular
