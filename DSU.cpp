@@ -14,11 +14,7 @@ using namespace std;
 namespace DSU {
 
 class DSU {
-  vector<int> parent;
-  vector<int> size, rank;
-  int N;
-  int num_sets;
-
+public:
   DSU(int n /* max elements in DSU */)
       : parent(n), size(n, 1), rank(n, 0), N(n), num_sets(n) {
     iota(parent.begin(), parent.end(), 0);
@@ -72,6 +68,12 @@ class DSU {
     }
     return mp;
   }
+
+private:
+  vector<int> parent;
+  vector<int> size, rank;
+  int N;
+  int num_sets;
 };
 
 } // namespace DSU
