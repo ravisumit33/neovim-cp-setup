@@ -18,6 +18,7 @@
 #include <numeric>
 #include <queue>
 #include <set>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -31,6 +32,10 @@ template <typename T> void inV(vector<T> &v) {
     cin >> el;
 }
 
+void solve() {
+  // Solve test case here
+}
+
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
@@ -40,7 +45,7 @@ int main() {
   cin >> t;
   while (t--) {
 #endif
-
+    solve();
 #if STRCMP($(JUDGE), Codeforces)
   }
 #endif
