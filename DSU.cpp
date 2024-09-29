@@ -16,43 +16,45 @@ namespace DSU {
 class DSU {
 public:
   DSU(int n /* max elements in DSU */)
-      : parent(n), size(n, 1), rank(n, 0), N(n), num_sets(n) {
-    iota(parent.begin(), parent.end(), 0);
+      : _parent(n), _size(n, 1), _rank(n, 0), _N(n), _num_sets(n) {
+    iota(_parent.begin(), _parent.end(), 0);
   }
 
   void make_set(int t) {
-    parent[t] = t;
-    size[t] = 1;
-    rank[t] = 0;
+    _parent[t] = t;
+    _size[t] = 1;
+    _rank[t] = 0;
   }
 
   int find_set(int v) {
-    if (v == parent[v])
+    if (v == _parent[v])
       return v;
-    return parent[v] = find_set(parent[v]);
+    return _parent[v] = find_set(_parent[v]);
   }
 
   void merge_set(int a, int b) {
     int pa = find_set(a);
     int pb = find_set(b);
     if (pa != pb) {
-      if (size[pa] < size[pb])
+      if (_size[pa] < _size[pb])
         swap(pa, pb); // merging on the basis of size
       // if (rank[pa] < rank[pb]) swap(pa, pb); // merging on the basis of rank
-      parent[pb] = pa;
-      size[pa] += size[pb];
-      if (rank[pa] == rank[pb])
-        ++rank[pa];
-      --num_sets;
+      _parent[pb] = pa;
+      _size[pa] += _size[pb];
+      if (_rank[pa] == _rank[pb])
+        ++_rank[pa];
+      --_num_sets;
     }
   }
 
-  int get_size(int v) { return size[find_set(v)]; }
+  int num_sets() { return _num_sets; }
+
+  int get_size(int v) { return _size[find_set(v)]; }
 
   vector<int> get_set(int v) {
     int pv = find_set(v);
     vector<int> ans;
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < _N; ++i) {
       if (find_set(i) == pv) {
         ans.push_back(i);
       }
@@ -62,7 +64,7 @@ public:
 
   unordered_map<int, vector<int>> get_all_sets() {
     unordered_map<int, vector<int>> mp;
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < _N; ++i) {
       int p = find_set(i);
       mp[p].push_back(i);
     }
@@ -70,10 +72,10 @@ public:
   }
 
 private:
-  vector<int> parent;
-  vector<int> size, rank;
-  int N;
-  int num_sets;
+  vector<int> _parent;
+  vector<int> _size, _rank;
+  int _N;
+  int _num_sets;
 };
 
 } // namespace DSU
