@@ -15,6 +15,13 @@ namespace DSU {
 
 class DSU {
 public:
+  struct SetDetails {
+    vector<int> members;
+    int size;
+    int rank;
+    int root;
+  };
+
   DSU(int n /* max elements in DSU */)
       : _parent(n), _size(n, 1), _rank(n, 0), _N(n), _num_sets(n) {
     iota(_parent.begin(), _parent.end(), 0);
@@ -51,22 +58,34 @@ public:
 
   int get_size(int v) { return _size[find_set(v)]; }
 
-  vector<int> get_set(int v) {
+  SetDetails get_set(int v) {
     int pv = find_set(v);
-    vector<int> ans;
+    vector<int> members;
     for (int i = 0; i < _N; ++i) {
       if (find_set(i) == pv) {
-        ans.push_back(i);
+        members.push_back(i);
       }
     }
-    return ans;
+    struct SetDetails sd;
+    sd.members = members;
+    sd.size = _size[pv];
+    sd.rank = _rank[pv];
+    sd.root = pv;
+    return sd;
   }
 
-  unordered_map<int, vector<int>> get_all_sets() {
-    unordered_map<int, vector<int>> mp;
+  unordered_map<int, SetDetails> get_all_sets() {
+    unordered_map<int, SetDetails> mp;
     for (int i = 0; i < _N; ++i) {
       int p = find_set(i);
-      mp[p].push_back(i);
+      if (mp.contains(p)) {
+        mp[p].members.push_back(i);
+      } else {
+        mp[p].members = {i};
+        mp[p].size = _size[p];
+        mp[p].rank = _rank[p];
+        mp[p].root = p;
+      }
     }
     return mp;
   }
