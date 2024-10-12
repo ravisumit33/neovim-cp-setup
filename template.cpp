@@ -36,17 +36,19 @@ void solve() {
   // Solve test case here
 }
 
+#define TEST_CASES STRCMP($(JUDGE), Codeforces)
+
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-#if STRCMP($(JUDGE), Codeforces)
+#if TEST_CASES
   int t;
   cin >> t;
   while (t--) {
 #endif
     solve();
-#if STRCMP($(JUDGE), Codeforces)
+#if TEST_CASES
   }
 #endif
 
