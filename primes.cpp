@@ -5,9 +5,27 @@ using namespace std;
 
 namespace primes {
 
+namespace sieveOfEratosthenes {
+
+int MAXN = 1e7;
+vector<bool> is_prime(MAXN + 1, true);
+
+void sieve() {
+  is_prime[0] = is_prime[1] = false;
+  for (int i = 2; i * i <= MAXN; ++i) {
+    if (is_prime[i]) {
+      for (int j = i * i; j <= MAXN; j += i) {
+        is_prime[j] = false;
+      }
+    }
+  }
+}
+
+} // namespace sieveOfEratosthenes
+
 namespace linearSieve {
 
-constexpr int MAXN = 3e5;  // Max N till which linear sieve can be used
+constexpr int MAXN = 1e7;  // Linear sieve can be used till N in order of 10^7
 vector<int> spf(MAXN + 1); // smallest prime factor
 vector<int> primes;
 
