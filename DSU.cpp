@@ -5,6 +5,7 @@
 //  Created by Sumit Kumar on 12/06/24.
 //
 
+#include <cassert>
 #include <numeric>
 #include <unordered_map>
 #include <vector>
@@ -28,12 +29,14 @@ public:
   }
 
   void make_set(int t) {
+    assert(0 <= t && t < _N);
     _parent[t] = t;
     _size[t] = 1;
     _rank[t] = 0;
   }
 
   int find_set(int v) {
+    assert(0 <= v && v < _N);
     if (v == _parent[v])
       return v;
     return _parent[v] = find_set(_parent[v]);
