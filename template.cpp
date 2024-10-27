@@ -1,3 +1,4 @@
+#include <limits>
 #define STRCMP(a, b) strcmp_##a##_##b
 #define strcmp_Codeforces_Codeforces 1
 #define strcmp_AtCoder_Codeforces 0
@@ -26,6 +27,11 @@
 #include <vector>
 
 using namespace std;
+
+constexpr int i32inf = numeric_limits<int>::max();
+constexpr int i32minf = numeric_limits<int>::min();
+constexpr int64_t i64inf = numeric_limits<int64_t>::max();
+constexpr int64_t i64minf = numeric_limits<int64_t>::min();
 
 template <typename T> void inV(vector<T> &v) {
   for (auto &el : v)
