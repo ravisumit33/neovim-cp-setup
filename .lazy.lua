@@ -4,13 +4,18 @@ local dap = require("dap")
 local function compile_and_debug()
 	local filedir = vim.fn.expand("%:p:h")
 	local filename = vim.fn.expand("%:t:r")
+	local escaped_filename = filename:gsub("'", "'\\''")
 	local filepath = vim.fn.expand("%:p")
+	local escaped_filepath = filepath:gsub("'", "'\\''")
+
 	local outname = filedir .. "/" .. filename
+	local escaped_outname = filedir .. "/" .. escaped_filename
 
 	-- Compile the current C++ file with debug symbols
-	local compile_cmd = 'g++ -Wall -Wextra -g -std=c++20 "' .. filepath .. '" -o "' .. outname .. '"'
+	local compile_cmd = "g++ -Wall -Wextra -g -std=c++20 '" .. escaped_filepath .. "' -o '" .. escaped_outname .. "'"
 
 	print("Compiling: " .. outname)
+	print("Command: " .. compile_cmd)
 
 	-- Execute the compilation command
 	local result = vim.fn.system(compile_cmd)
