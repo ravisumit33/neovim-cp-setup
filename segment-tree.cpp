@@ -11,7 +11,9 @@ public:
   SegTree() : SegTree(0) {}
   SegTree(int n) : SegTree(vector<T>(n, identity())) {}
   SegTree(const vector<T> &arr) : _n(arr.size()), _tree(4 * _n, identity()) {
-    _build(arr, 1, 0, _n - 1);
+    if (_n) {
+      _build(arr, 1, 0, _n - 1);
+    }
   }
 
   void update(int idx, function<T(const T &)> update_val) {
