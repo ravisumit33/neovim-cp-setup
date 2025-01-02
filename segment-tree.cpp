@@ -6,6 +6,18 @@ using namespace std;
 
 namespace SegmentTree {
 
+struct Max {
+  template <typename T> T operator()(const T &a, const T &b) const {
+    return max(a, b);
+  }
+};
+
+struct Min {
+  template <typename T> T operator()(const T &a, const T &b) const {
+    return min(a, b);
+  }
+};
+
 template <typename T, typename Merge, typename Identity> class SegTree {
 public:
   SegTree() : SegTree(0) {}
