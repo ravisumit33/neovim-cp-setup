@@ -60,6 +60,11 @@ template <typename T> void inV(vector<T> &v) {
     cin >> el;
 }
 
+template <typename T> void inV(vector<vector<T>> &vv) {
+  for (auto &row : vv)
+    inV(row);
+}
+
 void solve() {
   // Solve test case here
 }
