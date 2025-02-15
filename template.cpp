@@ -31,6 +31,17 @@
 
 using namespace std;
 
+class RNG {
+public:
+  RNG(int mn, int mx) : gen(rd()), dist(mn, mx) {}
+  int generate() { return dist(gen); }
+
+private:
+  random_device rd;
+  mt19937 gen;
+  uniform_int_distribution<int> dist;
+};
+
 template <typename T> void print_vars(const char *var_names, const T &var) {
   cerr << var_names << " = " << var << endl;
 }
@@ -65,6 +76,8 @@ template <typename T> void inV(vector<vector<T>> &vv) {
   for (auto &row : vv)
     inV(row);
 }
+
+// #define USE_RNG 1
 
 void solve() {
   // Solve test case here
