@@ -75,6 +75,7 @@ template <typename T> void inV(vector<T> &v) {
 
 void solve() {
   // Solve test case here
+  // A new comment
 }
 
 #define TEST_CASES STRCMP(Codeforces, Codeforces)
