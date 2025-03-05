@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap("n", "<leader>cpr", ":CompetiTest receive contest<CR>", 
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>cpf",
-	":Telescope find_files find_command=rg,--ignore,--hidden,--files,-g,*.cpp<CR>",
+	":FzfLua files fd_opts=--extension=cpp<CR>",
 	{ noremap = true, silent = true }
 )
 
