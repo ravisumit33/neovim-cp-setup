@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap("n", "<leader>cpr", ":CompetiTest receive contest<CR>", 
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>cpf",
-	"<cmd>lua Snacks.picker.files({ pattern = 'file:cpp$' })<CR>",
+	"<cmd>lua Snacks.picker.files({ pattern = 'file:cpp$ ' })<CR>",
 	{ noremap = true, silent = true }
 )
 
