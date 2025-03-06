@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap("n", "<leader>cpr", ":CompetiTest receive contest<CR>", 
 vim.api.nvim_set_keymap(
 	"n",
 	"<leader>cpf",
-	":FzfLua files fd_opts=--extension=cpp<CR>",
+	"<cmd>lua Snacks.picker.files({ pattern = 'file:cpp$' })<CR>",
 	{ noremap = true, silent = true }
 )
 
@@ -85,31 +85,6 @@ return {
 				view_output_diff = true,
 			})
 		end,
-	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		opts = {
-			window = {
-				mappings = {
-					["<c-y>"] = {
-						function(state)
-							local node = state.tree:get_node()
-							if node.type == "file" then
-								-- Read the file content
-								local content = vim.fn.readfile(node.path)
-								-- Join the lines into a single string
-								local file_content = table.concat(content, "\n")
-								-- Copy the content to the system clipboard
-								vim.fn.setreg("+", file_content)
-								print("File content copied to clipboard!")
-							else
-								print("Not a file!")
-							end
-						end,
-					},
-				},
-			},
-		},
 	},
 	{
 		"rcarriga/nvim-dap-ui",
