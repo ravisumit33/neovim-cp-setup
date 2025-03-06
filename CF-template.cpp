@@ -2,6 +2,8 @@
 #define strcmp_Codeforces_Codeforces 1
 #define strcmp_AtCoder_Codeforces 0
 
+// IWYU pragma: begin_keep
+
 #include <algorithm>
 #include <array>
 #include <bit>
@@ -28,7 +30,11 @@
 #include <utility>
 #include <vector>
 
+// IWYU pragma: end_keep
+
 using namespace std;
+
+// NOLINTBEGIN(clang-diagnostic-unused*)
 
 class RNG {
 public:
@@ -70,6 +76,8 @@ template <typename T> void inV(vector<T> &v) {
   for (auto &el : v)
     cin >> el;
 }
+
+// NOLINTEND(clang-diagnostic-unused*)
 
 // #define USE_RNG 1
 
