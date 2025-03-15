@@ -81,11 +81,11 @@ template <typename T> void inV(vector<T> &v) {
 
 // #define USE_RNG 1
 
+#define TEST_CASES STRCMP(Codeforces, Codeforces)
+
 void solve() {
   // Solve test case here
 }
-
-#define TEST_CASES STRCMP(Codeforces, Codeforces)
 
 int main() {
   ios::sync_with_stdio(false);
