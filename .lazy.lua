@@ -25,6 +25,18 @@ local function compile_and_debug()
 		return
 	end
 
+	-- Terminate any existing debugging session
+	local current_session = dap.session()
+	if current_session then
+		print("Terminating existing debugging session...")
+		dap.terminate()
+		-- Wait for the session to terminate
+		vim.wait(1000, function()
+			return not dap.session()
+		end)
+		print("Existing session terminated.")
+	end
+
 	-- Define the debug configuration
 	local debug_config = {
 		name = "Debug " .. filename,
@@ -43,6 +55,7 @@ local function compile_and_debug()
 	}
 
 	-- Run the debug configuration
+	print("Starting new debugging session...")
 	dap.run(debug_config)
 end
 
