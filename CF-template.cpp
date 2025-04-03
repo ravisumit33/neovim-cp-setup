@@ -83,6 +83,8 @@ template <typename T> void inV(vector<T> &v) {
 
 #define TEST_CASES STRCMP(Codeforces, Codeforces)
 
+void precompute() {}
+
 void solve() {
   // Solve test case here
 }
@@ -90,7 +92,7 @@ void solve() {
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-
+  precompute();
 #if TEST_CASES
   int t;
   cin >> t;
