@@ -25,47 +25,24 @@
 #include <set>
 #include <stack>
 #include <string>
+#include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
 #include <vector>
+
+#ifdef LOCAL_ENV
+
+#include "RNG.hpp"
+#include "custom-assert.hpp"
+
+#endif // LOCAL_ENV
 
 // IWYU pragma: end_keep
 
 using namespace std;
 
 // NOLINTBEGIN(clang-diagnostic-unused*)
-
-class RNG {
-public:
-  RNG(int mn, int mx) : gen(rd()), dist(mn, mx) {}
-  int generate() { return dist(gen); }
-
-private:
-  random_device rd;
-  mt19937 gen;
-  uniform_int_distribution<int> dist;
-};
-
-template <typename T> void print_vars(const char *var_names, const T &var) {
-  cerr << var_names << " = " << var << endl;
-}
-
-template <typename T, typename... Args>
-void print_vars(const char *var_names, const T &var, const Args &...args) {
-  const char *comma = strchr(var_names, ',');
-  cerr.write(var_names, comma - var_names) << " = " << var << endl;
-  print_vars(comma + 1, args...);
-}
-
-#define ASSERT_WITH_VARS(condition, ...)                                       \
-  do {                                                                         \
-    if (!(condition)) {                                                        \
-      cerr << "Assertion failed: " #condition << endl;                         \
-      print_vars(#__VA_ARGS__, __VA_ARGS__);                                   \
-      abort();                                                                 \
-    }                                                                          \
-  } while (0)
 
 constexpr int i32inf = numeric_limits<int>::max();
 constexpr int i32minf = numeric_limits<int>::min();
@@ -75,6 +52,11 @@ constexpr int64_t i64minf = numeric_limits<int64_t>::min();
 template <typename T> void inV(vector<T> &v) {
   for (auto &el : v)
     cin >> el;
+}
+
+template <typename T> void inV(vector<vector<T>> &vv) {
+  for (auto &row : vv)
+    inV(row);
 }
 
 // NOLINTEND(clang-diagnostic-unused*)
