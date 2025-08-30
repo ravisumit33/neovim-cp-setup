@@ -12,7 +12,7 @@ local function compile_and_debug()
 	local escaped_outname = filedir .. "/" .. escaped_filename
 
 	-- Compile the current C++ file with debug symbols
-	local compile_cmd = "g++ -Wall -Wextra -g -std=c++20 '" .. escaped_filepath .. "' -o '" .. escaped_outname .. "'"
+	local compile_cmd = "g++ -Wall -Wextra -g -std=c++23 '" .. escaped_filepath .. "' -o '" .. escaped_outname .. "'"
 
 	print("Compiling: " .. outname)
 	print("Command: " .. compile_cmd)
@@ -84,7 +84,7 @@ return {
 				compile_command = {
 					cpp = {
 						exec = "g++",
-						args = { "-Wall", "-Wextra", "-g", "-std=c++20", "$(FNAME)", "-o", "$(FNOEXT)" },
+						args = { "-Wall", "-Wextra", "-g", "-std=c++23", "$(FNAME)", "-o", "$(FNOEXT)" },
 					},
 				},
 				template_file = "template.$(FEXT)",
