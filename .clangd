@@ -1,2 +1,27 @@
 CompileFlags:
-  Add: [-std=c++23, -Wall, -Wextra, -DLOCAL_ENV]
+  Add: [
+    -std=c++23,
+    -Wall,
+    -Wextra,
+    -DDEBUG_ENV,
+    -x,
+    c++,
+    -isystem,
+    /opt/homebrew/Cellar/gcc@14/14.3.0/include/c++/14,
+    -isystem,
+    /opt/homebrew/Cellar/gcc@14/14.3.0/include/c++/14/aarch64-apple-darwin24,
+    -isystem,
+    /opt/homebrew/Cellar/gcc@14/14.3.0/include/c++/14/backward,
+    -isystem,
+    /opt/homebrew/Cellar/gcc@14/14.3.0/lib/gcc/14/gcc/aarch64-apple-darwin24/14/include,
+    -isystem,
+    /opt/homebrew/Cellar/gcc@14/14.3.0/lib/gcc/14/gcc/aarch64-apple-darwin24/14/include-fixed,
+    -I,
+    ..,
+  ]
+
+# Suppress known issues with gcc - https://github.com/llvm/llvm-project/issues/85335
+Diagnostics:
+  Suppress:
+    - using_decl_conflict_reverse
+    - using_decl_conflict

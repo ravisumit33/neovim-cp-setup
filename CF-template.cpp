@@ -4,43 +4,29 @@
 
 // IWYU pragma: begin_keep
 
-#include <algorithm>
-#include <array>
-#include <bit>
-#include <bitset>
-#include <cassert>
-#include <cctype>
-#include <climits>
-#include <cmath>
-#include <cstdint>
-#include <cstdlib>
-#include <cstring>
-#include <functional>
-#include <iostream>
-#include <limits>
-#include <map>
-#include <numeric>
-#include <queue>
-#include <random>
-#include <set>
-#include <stack>
-#include <string>
-#include <type_traits>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
+#include "bits/stdc++.h"
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
-#ifdef LOCAL_ENV
+#ifdef DEBUG_ENV
 
 #include "RNG.hpp"
 #include "custom-assert.hpp"
 
-#endif // LOCAL_ENV
+#endif // DEBUG_ENV
 
 // IWYU pragma: end_keep
 
 using namespace std;
+using namespace __gnu_pbds;
+
+template <typename T>
+using ordered_set =
+    tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+template <typename K, typename V>
+using ordered_map =
+    tree<K, V, less<K>, rb_tree_tag, tree_order_statistics_node_update>;
 
 // NOLINTBEGIN(clang-diagnostic-unused*)
 

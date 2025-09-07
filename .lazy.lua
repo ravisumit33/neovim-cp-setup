@@ -12,7 +12,7 @@ local function compile_and_debug()
 	local escaped_outname = filedir .. "/" .. escaped_filename
 
 	-- Compile the current C++ file with debug symbols
-	local compile_cmd = "g++ -Wall -Wextra -g -std=c++23 -DLOCAL_ENV '"
+	local compile_cmd = "g++-14 -Wall -Wextra -g -std=c++23 -DDEBUG_ENV -I . '"
 		.. escaped_filepath
 		.. "' -o '"
 		.. escaped_outname
@@ -87,8 +87,16 @@ return {
 			require("competitest").setup({
 				compile_command = {
 					cpp = {
-						exec = "g++",
-						args = { "-Wall", "-Wextra", "-g", "-std=c++23", "-DLOCAL_ENV", "$(FNAME)", "-o", "$(FNOEXT)" },
+						exec = "g++-14",
+						args = {
+							"-Wall",
+							"-Wextra",
+							"-g",
+							"-std=c++23",
+							"$(FNAME)",
+							"-o",
+							"$(FNOEXT)",
+						},
 					},
 				},
 				template_file = "template.$(FEXT)",
