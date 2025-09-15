@@ -20,13 +20,13 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-template <typename T>
+template <typename T, typename Compare = std::less<T>>
 using ordered_set =
-    tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+    tree<T, null_type, Compare, rb_tree_tag, tree_order_statistics_node_update>;
 
-template <typename K, typename V>
+template <typename K, typename V, typename Compare = std::less<K>>
 using ordered_map =
-    tree<K, V, less<K>, rb_tree_tag, tree_order_statistics_node_update>;
+    tree<K, V, Compare, rb_tree_tag, tree_order_statistics_node_update>;
 
 // NOLINTBEGIN(clang-diagnostic-unused*)
 
